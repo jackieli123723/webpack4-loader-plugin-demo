@@ -75,6 +75,7 @@ module.exports = {
    
   //自己的插件 
   plugins:[
+    new webpack.BannerPlugin('@author: jackieli\n@website: http://issue.lilidong.cn'),
     //use
     new MyFisrtWbapckPlugin(),
     // 在初始化 EndWebpackPlugin 时传入了两个参数，分别是在成功时的回调函数和失败时的回调函数；
@@ -87,3 +88,16 @@ module.exports = {
     })
   ]
 };
+
+/* +----------------------------------------------------------------------
+// | West Gate Internet
+// +----------------------------------------------------------------------
+// | ©2018 All Rights Reserved.版权所有.West Gate Internet 
+// +----------------------------------------------------------------------
+// | 博客ssr版本:https://textnuxt.lilidong.cn/
+// | 博客spa版本:http://issue.lilidong.cn/ 
+// +----------------------------------------------------------------------
+// | 开源协议 ( https://mit-license.org )
+// +----------------------------------------------------------------------
+// | github开源项目：https://github.com/jackieli123723
+// +--------------------------------------------------------------------*/
