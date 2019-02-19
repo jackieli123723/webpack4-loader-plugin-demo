@@ -12,7 +12,7 @@
   "keywords": [
     "webpack"
   ],
-  "author": "xielei",
+  "author": "jackieli",
   "license": "ISC",
   "devDependencies": {
     "css-loader": "^0.28.11",
