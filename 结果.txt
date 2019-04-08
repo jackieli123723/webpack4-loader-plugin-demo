@@ -14,8 +14,51 @@ Built at: 2018-12-19 13:51:08
 bundle.js  962 bytes       0  [emitted]  index
 Entrypoint index = bundle.js
 [0] ./index.js 32 bytes {0} [built]
+lenovo@lenovo-PC MINGW64 /e/jackieli/webpack-loader-babel-plugins/webpack4-loader-demo (master)
+$ npm run build
+
+> learning-webpack@1.0.0 build E:\jackieli\webpack-loader-babel-plugins\webpack4-loader-demo
+> webpack --mode production --colors
+
+bundle.js
+Hash: f66e96a2ccf20b1046bb
+Version: webpack 4.29.6
+Time: 366ms
+Built at: 2019-04-08 15:32:08
+    Asset        Size  Chunks             Chunk Names
+bundle.js  1020 bytes       0  [emitted]  index
+Entrypoint index = bundle.js
+[0] ./index.js 26 bytes {0} [built]
+lenovo@lenovo-PC MINGW64 /e/jackieli/webpack-loader-babel-plugins/webpack4-loader-demo (master)
+$ npm run build
+
+> learning-webpack@1.0.0 build E:\jackieli\webpack-loader-babel-plugins\webpack4-loader-demo
+> webpack --mode production --colors
+
+bundle.js
+Hash: 21471f4ce2dcfe33516d
+Version: webpack 4.12.0
+Time: 109ms
+Built at: 2019-04-08 15:27:48
+    Asset        Size  Chunks             Chunk Names
+bundle.js  1020 bytes       0  [emitted]  index
+[0] ./index.js 26 bytes {0} [built]
 
 
+
+##webpack4
+   "webpack": "^4.12.0",
+    "webpack-cli": "^3.0.3"
+##webpack3
+
+"webpack": "^3.10.0",
+    "webpack-cli": "^3.3.0"
+   E:\jackieli\webpack-loader-babel-plugins\webpack4-loader-demo\node_modules\webpack\bin\webpack.js:348
+                        throw err;
+                        ^
+
+TypeError: Cannot read property 'done' of undefined
+ 
 
 ## 
 compiler.plugin('emit',function(compilation, callback) {
@@ -25,6 +68,35 @@ compiler.plugin('emit',function(compilation, callback) {
   // 如果不执行 callback，运行流程将会一直卡在这不往下执行 
   callback();
 });
+
+
+
+###
+
+lenovo@lenovo-PC MINGW64 /e/jackieli/webpack-loader-babel-plugins/webpack4-loader-demo (master)
+$ npm run dev
+
+> learning-webpack@1.0.0 dev E:\jackieli\webpack-loader-babel-plugins\webpack4-loader-demo
+> webpack --config webpack.config.js  --mode production --profile --colors
+
+22
+bundle.js
+11
+bundle.js
+filelist1554713718847.md
+Hash: f66e96a2ccf20b1046bb
+Version: webpack 4.29.6
+Time: 118ms
+Built at: 2019-04-08 16:55:18
+                   Asset        Size  Chunks             Chunk Names
+               bundle.js  1020 bytes       0  [emitted]  index
+filelist1554713718847.md    28 bytes          [emitted]
+Entrypoint index = bundle.js
+[0] ./index.js 26 bytes {0} [built]
+    factory:45ms building:20ms = 65ms
+
+compiler.hooks.emit.tapAsync >   compiler.hooks.done.tapAsync  emit.tapAsync先执行
+
 
 
 ## 不调用 cb()
