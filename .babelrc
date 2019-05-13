@@ -1,0 +1,8 @@
+{
+  "plugins": [ 
+	  ["./babel-plugins/plugin", {
+	    "bad": "good",
+	    "dead": "alive"
+	  }] 
+  ]
+}

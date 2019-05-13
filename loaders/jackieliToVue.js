@@ -16,7 +16,7 @@
 const loaderUtils = require('loader-utils');
 module.exports = function (source) {
 	const options = loaderUtils.getOptions(this);
-	const result = source.replace("jackieli",options.name)
+	const result = source.replace("jackieli",options ?  options.name : 'vue')
 	this.callback(null, result)
 	return result
 }

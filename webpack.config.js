@@ -7,11 +7,12 @@ const EndWebpackPlugin = require('./webpack-plugins/EndWebpackPlugin')
 
 module.exports = {
   entry: {
-    index: './index.js'
+    //index: './index.js',
+    babelcover:"./test/index2.js"
   },
   output: {
     path: path.resolve(__dirname, "build"),
-    filename: "bundle.js"
+    filename: "[name].bundle.js"
   },
 
   //注意，resolve 配置会影响 normal 和 context 这两个 resolver，而 resolveLoader 则用于修改 loader resolver。
@@ -67,10 +68,26 @@ module.exports = {
                   options:{
                     name:"vue"
                   }
-            }       
+            }
         ]
-      }
-    ]
+      },
+       //多个数组  带参数 默认值options
+      //  {
+      //   test:/\.js/,
+      //   use:[
+      //       {
+      //             loader:"vueToWorld",
+      //             options:{
+      //               name:"world"
+      //             }
+      //       },
+      //       {
+      //             loader:"jackieliToVue",
+      //       }
+      //   ]
+      // },
+
+    ],
   },
    
   //自己的插件 

@@ -138,3 +138,145 @@ classUglifyJsPlugin {
 	}
 }
 module.exports = UglifyJsPlugin;
+
+
+##babel plugin
+
+index2.js
+let bad = true;
+
+lenovo@lenovo-PC MINGW64 /e/jackieli/webpack-loader-babel-plugins/webpack4-loader-demo (master)
+
+ $  npx babel --plugins ./babel-plugins/plugin index2.js
+
+ let good = true;
+
+
+lenovo@lenovo-PC MINGW64 /e/jackieli/webpack-loader-babel-plugins/webpack4-loader-demo (master)
+$  npx babel --plugins ./babel-plugins/plugin index2.js
+// let bad = true;
+sebmck === dork;
+
+
+{
+  "plugins": [ 
+	  ["./babel-plugins/plugin", {
+	    "bad": "good",
+	    "dead": "alive"
+	  }] 
+  ]
+}
+也可以不带 参数
+{
+  "plugins": [ 
+	  ["./babel-plugins/plugin"] 
+  ]
+}
+
+lenovo@lenovo-PC MINGW64 /e/jackieli/webpack-loader-babel-plugins/webpack4-loader-demo (master)
+$  npx babel --plugins ./babel-plugins/plugin index2.js
+Called!
+let good = true;
+sebmck === dork;
+
+
+
+编写你的第一个 Babel 插件
+现在你已经熟悉了 Babel 的所有基础知识了，让我们把这些知识和插件的 API融合在一起来编写第一个 Babel 插件吧。
+
+先从一个接收了当前babel对象作为参数的 function 开始。
+
+export default function(babel) {
+  // plugin contents
+}
+由于你将会经常这样使用，所以直接取出 babel.types 会更方便：（译注：这是 ES2015 语法中的对象解构，即 Destructuring）
+
+export default function({ types: t }) {
+  // plugin contents
+}
+接着返回一个对象，其 visitor 属性是这个插件的主要访问者。
+
+export default function({ types: t }) {
+  return {
+    visitor: {
+      // visitor contents
+    }
+  };
+};
+Visitor 中的每个函数接收2个参数：path 和 state
+
+export default function({ types: t }) {
+  return {
+    visitor: {
+      Identifier(path, state) {},
+      ASTNodeTypeHere(path, state) {}
+    }
+  };
+};
+让我们快速编写一个可用的插件来展示一下它是如何工作的。下面是我们的源代码：
+
+foo === bar;
+其 AST 形式如下：
+
+{
+  type: "BinaryExpression",
+  operator: "===",
+  left: {
+    type: "Identifier",
+    name: "foo"
+  },
+  right: {
+    type: "Identifier",
+    name: "bar"
+  }
+}
+我们从添加 BinaryExpression 访问者方法开始：
+
+export default function({ types: t }) {
+  return {
+    visitor: {
+      BinaryExpression(path) {
+        // ...
+      }
+    }
+  };
+}
+然后我们更确切一些，只关注哪些使用了 === 的 BinaryExpression。
+
+visitor: {
+  BinaryExpression(path) {
+    if (path.node.operator !== "===") {
+      return;
+    }
+
+    // ...
+  }
+}
+现在我们用新的标识符来替换 left 属性：
+
+BinaryExpression(path) {
+  if (path.node.operator !== "===") {
+    return;
+  }
+
+  path.node.left = t.identifier("sebmck");
+  // ...
+}
+于是如果我们运行这个插件我们会得到：
+
+sebmck === bar;
+现在只需要替换 right 属性了。
+
+BinaryExpression(path) {
+  if (path.node.operator !== "===") {
+    return;
+  }
+
+  path.node.left = t.identifier("sebmck");
+  path.node.right = t.identifier("dork");
+}
+这就是我们的最终结果了：
+
+
+sebmck === dork;
+完美！我们的第一个 Babel 插件。
