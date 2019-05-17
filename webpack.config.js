@@ -3,13 +3,20 @@ const webpack = require("webpack");
 //自己编写的第一个插件
 const MyFisrtWbapckPlugin = require('./webpack-plugins/MyFisrtWbapckPlugin')
 const EndWebpackPlugin = require('./webpack-plugins/EndWebpackPlugin')
-
+const MyFirstBabelPlugin = require('./babel-plugins/plugin')
 
 module.exports = {
   entry: {
-    //index: './index.js',
-    babelcover:"./test/index2.js"
+  //   //index: './index.js',
+  //   // babelcover:"./test/index2.js"
+  //   // babelcoverJoin:"./test/index2.js"
+    babelcoverJoin2:"./index2.js" //babel-plguin 生效了 先用babel-plguin 转js内容 >>>>然后在  webpack loader 在转换内容
   },
+
+  // entry: {
+  //     babelcoverJoinPlguin: ['./babel-plugins/plugin','./index2.js'] //这种方式 babel-plugin 中的console.log("Called!"); 被耦合嵌入进入打包代码     
+  // },
+
   output: {
     path: path.resolve(__dirname, "build"),
     filename: "[name].bundle.js"
@@ -57,6 +64,7 @@ module.exports = {
       {
         test:/\.js/,
         use:[
+
             {
                   loader:"vueToWorld",
                   options:{

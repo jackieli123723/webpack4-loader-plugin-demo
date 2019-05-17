@@ -181,6 +181,61 @@ sebmck === dork;
 
 
 
+lenovo@lenovo-PC MINGW64 /e/jackieli/webpack-loader-babel-plugins/webpack4-loader-demo (master)
+$ babel --plugins ./babel-plugins/plugin index2.js --out-file script-compiled.js
+Called!
+
+
+
+写入.babelrc 或者写入babel.config.js 可以打包时候不用带上--plugins ./babel-plugins/plugin 参数
+{
+  plugins: [ 
+	  ["./babel-plugins/plugin", {
+	    "bad": "good",
+	    "dead": "alive"
+	  }] 
+  ]
+}
+
+不要后面的参数{}对象也可以 里面这是些配置项
+{
+  plugins: [ 
+	  ["./babel-plugins/plugin"] 
+  ]
+}
+lenovo@lenovo-PC MINGW64 /e/jackieli/webpack-loader-babel-plugins/webpack4-loader-demo (master)
+$ babel  index2.js --out-file script-compiled2.js
+Called!
+
+
+
+
+## 如何把webpack loader 和 babel plugin 自己写的结合起来用呢？
+
+将代码 
+```
+let bad = true;
+foo === bar;
+
+console.log('hello jackieli')
+
+```
+编译为这样 不是混线的 -- >> 然后 通过混淆 
+
+```
+let good = true;
+sebmck === dork;
+
+console.log('hello world');
+
+```
+如何做到 
+
+
+
+
+
+
 编写你的第一个 Babel 插件
 现在你已经熟悉了 Babel 的所有基础知识了，让我们把这些知识和插件的 API融合在一起来编写第一个 Babel 插件吧。
 
